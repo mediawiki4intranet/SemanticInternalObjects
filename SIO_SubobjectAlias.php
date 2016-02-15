@@ -58,7 +58,7 @@ class SIOSubobjectAlias {
 		if ( class_exists( 'SMW\SubobjectParserFunction' ) ) {
 			// SMW 1.9+
 			$subobjectFunction = \SMW\ParserFunctionFactory::newFromParser( $parser )->getSubobjectParser();
-			return $subobjectFunction->parse( new SMW\ParserParameterFormatter( $subobjectArgs ) );
+			return $subobjectFunction->parse( $parser, new SMW\ParserParameterFormatter( $subobjectArgs ) );
 		} else {
 			// SMW 1.8
 			call_user_func_array( array( 'SMWSubobject', 'render' ), $subobjectArgs );
