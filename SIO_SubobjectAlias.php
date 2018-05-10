@@ -10,7 +10,7 @@
  */
 class SIOSubobjectAlias {
 
-	public static function doSetInternal( &$parser ) {
+	public static function doSetInternal( $parser ) {
 		// For SMW 1.8, this is a hack, since SMW's
 		// SMWSubobject::render() call is not meant to be called
 		// outside of SMW. Fortunately, for SMW 1.9 and higher,
@@ -18,7 +18,7 @@ class SIOSubobjectAlias {
 
 		$origArgs = func_get_args();
 		// $parser is also $origArgs[0].
-		$subobjectArgs = array( &$parser );
+		$subobjectArgs = array( $parser );
 		// Blank first argument, so that subobject ID will be
 		// an automatically-generated random number.
 		$subobjectArgs[1] = '';
@@ -71,7 +71,7 @@ class SIOSubobjectAlias {
 	 * this recurring event. For SMW 1.9 and higher, calls
 	 * #set_recurring_event (which itself uses subobjects).
 	 */
-	public static function doSetInternalRecurringEvent( &$parser ) {
+	public static function doSetInternalRecurringEvent( $parser ) {
 		$params = func_get_args();
 		array_shift( $params ); // We already know the $parser ...
 
@@ -94,7 +94,7 @@ class SIOSubobjectAlias {
 			// Mimic a call to #subobject for each date.
 			foreach ( $all_date_strings as $date_string ) {
 				$first_params = array(
-					&$parser,
+					$parser,
 					'',
 					$objToPagePropName . '=' . $parser->getTitle()->getText(),
 					"$property=$date_string"

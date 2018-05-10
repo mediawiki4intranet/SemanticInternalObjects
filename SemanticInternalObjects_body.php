@@ -258,7 +258,7 @@ class SIOHandler {
 	 * Called with the 'ParserClearState' hook, when more than one page
 	 * is parsed in a single action.
 	 */
-	public static function clearState( &$parser ) {
+	public static function clearState( $parser ) {
 		// For some reason, the #set_internal calls on a page are
 		// sometimes called twice (or more?). Ideally, there would
 		// be a way to prevent that, but until then, we use the
@@ -279,7 +279,7 @@ class SIOHandler {
 	/**
 	 * Handle the #set_internal parser function.
 	 */
-	public static function doSetInternal( &$parser ) {
+	public static function doSetInternal( $parser ) {
 		global $wgContLang;
 
 		$title = $parser->getTitle();
@@ -335,7 +335,7 @@ class SIOHandler {
 	/**
 	 * Handles the #set_internal_recurring_event parser function.
 	 */
-	public static function doSetInternalRecurringEvent( &$parser ) {
+	public static function doSetInternalRecurringEvent( $parser ) {
 		$params = func_get_args();
 		array_shift( $params ); // We already know the $parser ...
 
@@ -353,7 +353,7 @@ class SIOHandler {
 		// Mimic a call to #set_internal for each date.
 		foreach ( $all_date_strings as $date_string ) {
 			$first_params = array(
-				&$parser,
+				$parser,
 				$objToPagePropName,
 				"$property=$date_string"
 			);
@@ -428,7 +428,7 @@ class SIOHandler {
 	 * Called after a page is moved - renames all the internal objects
 	 * named "Old page#x" to "New page#x".
 	 */
-	static public function handlePageMove( &$old_title, &$new_title, &$user, $page_id, $redir_id ) {
+	static public function handlePageMove( $old_title, $new_title, $user, $page_id, $redir_id ) {
 		$oldPageName = $old_title->getDBkey();
 		$oldNamespace = $old_title->getNamespace();
 		$newPageName = $new_title->getDBkey();

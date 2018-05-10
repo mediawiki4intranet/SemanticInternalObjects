@@ -66,13 +66,13 @@ $wgAutoloadClasses['SIOInternalObject'] = $siogIP . '/SemanticInternalObjects_bo
 $wgAutoloadClasses['SIOSubobjectAlias'] = $siogIP . '/SIO_SubobjectAlias.php';
 $wgAutoloadClasses['SIOPageSchemas'] = $siogIP . '/SIO_PageSchemas.php';
 
-function siofRegisterParserFunctions( &$parser ) {
+function siofRegisterParserFunctions( $parser ) {
 	$parser->setFunctionHook( 'set_internal', array( 'SIOHandler', 'doSetInternal' ) );
 	$parser->setFunctionHook( 'set_internal_recurring_event', array( 'SIOHandler', 'doSetInternalRecurringEvent' ) );
 	return true; // always return true, in order not to stop MW's hook processing!
 }
 
-function siofRegisterAliasParserFunctions( &$parser ) {
+function siofRegisterAliasParserFunctions( $parser ) {
 	$parser->setFunctionHook( 'set_internal', array( 'SIOSubobjectAlias', 'doSetInternal' ) );
 	$parser->setFunctionHook( 'set_internal_recurring_event', array( 'SIOSubobjectAlias', 'doSetInternalRecurringEvent' ) );
 	return true; // always return true, in order not to stop MW's hook processing!
